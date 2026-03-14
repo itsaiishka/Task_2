@@ -20,10 +20,10 @@ def login_user(email, password):
     response = requests.post(url, json=payload)
     return response
 
-def delete_user(token):
+def delete_user(access_token):
     url = BASE_URL + USER_DATA
     headers = {
-        "Authorization": token
+        "Authorization": access_token
     }
     response = requests.delete(url, headers=headers)
     return response

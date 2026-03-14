@@ -13,12 +13,14 @@ def create_test_user():
     assert response.status_code == 200
 
     login_response = user_helpers.login_user(email, password)
-    token = login_response.json().get("accessToken")
+    assert login_response.status_code == 200
+
+    access_token = login_response.json().get("accessToken")
     
     yield {
         "email": email,
         "password": password,
         "name": name,
-        "token": token  
+        "accessToken": access_token  
     }
-    user_helpers.delete_user(token)
+    user_helpers.delete_user(access_token)
