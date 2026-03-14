@@ -1,6 +1,6 @@
 import requests
 import allure
-import random
+import uuid
 import pytest
 from helpers.endpoints import BASE_URL, USER_DATA
 
@@ -15,7 +15,7 @@ class TestUpdateUser:
     ])
     def test_update_user_with_auth(self, create_test_user, field, value):
         if field == "email":
-            value = f"updated_email{random.randint(1000, 9999)}@example.com"
+            value = f"updated_email{uuid.uuid4()}@example.com"
 
         access_token = create_test_user["accessToken"]
 
@@ -45,3 +45,4 @@ class TestUpdateUser:
 
         assert response.status_code == 401
         assert response_json.get("success") is False
+        assert response_json.get("message") == "You should be authorised"

@@ -1,13 +1,13 @@
 import requests
 import allure
-import random
+import uuid
 from helpers.endpoints import BASE_URL, CREATE_USER
 
 
 class TestCreateUser:
     @allure.title("Создание нового уникального пользователя")
     def test_create_unique_user(self):
-        email = f"unique{random.randint(1000, 9999)}@example.com"
+        email = f"unique{uuid.uuid4()}@example.com"
         password = "unique_password"
         name = "Unique User"
 
@@ -42,7 +42,7 @@ class TestCreateUser:
 
     @allure.title("Создать пользователя и не заполнить одно из обязательных полей")
     def test_create_user_missing_fields(self):
-        email = f"missing{random.randint(1000, 9999)}@example.com"
+        email = f"missing{uuid.uuid4()}@example.com"
         password = "missing_password"
 
         payload = {

@@ -1,10 +1,10 @@
 import pytest
 import helpers.user_helpers as user_helpers
-import random
+import uuid
 
 @pytest.fixture()
 def create_test_user():
-    random_number = random.randint(1000, 9999)
+    random_number = uuid.uuid4()
     email = f"test{random_number}@example.com"
     password = "testpassword"
     name = f"Test User {random_number}"
