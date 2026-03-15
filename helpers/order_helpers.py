@@ -17,3 +17,11 @@ def create_order(ingredients, access_token=None):
         headers["Authorization"] = access_token
     response = requests.post(url, json=payload, headers=headers)
     return response
+
+def get_user_orders(access_token):
+    url = BASE_URL + "/api/orders"
+    headers = {
+        "Authorization": access_token
+    }
+    response = requests.get(url, headers=headers)
+    return response
